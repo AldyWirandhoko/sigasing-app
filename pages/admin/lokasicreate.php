@@ -17,8 +17,8 @@ if (isset($_POST['button_create'])) {
         </div>
 <?php
     } else {
-        $insertSQL = "INSERT INTO lokasi SET nama_lokasi = ?";
-        $stmt = $db->prepare($insertSQL);
+        $insertSql = "INSERT INTO lokasi SET nama_lokasi = ?";
+        $stmt = $db->prepare($insertSql);
         $stmt ->bindParam(1, $_POST['nama_lokasi']);
         if ($stmt->execute()) {
             $_SESSION['hasil'] = true;
