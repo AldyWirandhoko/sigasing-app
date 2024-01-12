@@ -12,6 +12,9 @@ if (isset($_GET['page'])){
         case 'lokasicreate':
             file_exists('pages/admin/lokasicreate.php') ? include 'pages/admin/lokasicreate.php' : include "pages/404.php";
             break;
+        case 'lokasiupdate':
+            file_exists('pages/admin/lokasiupdate.php') ? include 'pages/admin/lokasiupdate.php' : include "pages/404.php";
+            break;
         default:
             include "pages/404.php";
         }
