@@ -2,6 +2,29 @@
 <!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">
+        <?php
+        if (isset($_SESSION["hasil"])) {
+            if ($_SESSION["hasil"]) {
+        ?>
+                <div class="alert alert-success alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                    <h5><i class="icon fas fa-check"></i> Berhasil</h5>
+                    <?php echo $_SESSION["pesan"] ?>
+                </div>
+            <?php
+            } else {
+            ?>
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                    <h5><i class="icon fas fa-ban"></i> Gagal</h5>
+                    <?php echo $_SESSION["pesan"] ?>
+                </div>
+        <?php
+            }
+            unset($_SESSION['hasil']);
+            unset($_SESSION['pesan']);
+        }
+        ?>
         <div class="row mb-2">
             <div class="col-sm-6">
                 <h1 class="m-0">Lokasi</h1>
