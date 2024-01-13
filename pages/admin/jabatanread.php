@@ -27,12 +27,12 @@
         ?>
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Lokasi</h1>
+                <h1 class="m-0">Jabatan</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="?page=home">Home</a></li>
-                    <li class="breadcrumb-item active">Lokasi</li>
+                    <li class="breadcrumb-item active">Jabatan</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -44,8 +44,8 @@
 <div class="content">
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Data Lokasi</h3>
-            <a href="?page=lokasicreate" class="btn btn-success btn-sm float-right">
+            <h3 class="card-title">Data Jabatan</h3>
+            <a href="?page=jabatancreate" class="btn btn-success btn-sm float-right">
                 <i class="fa fa-plus-circle"></i> Tambah data</a>
         </div>
         <div class="card-body">
@@ -53,14 +53,20 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Nama Lokasi</th>
+                        <th>Nama Jabatan</th>
+                        <th>Gapok</th>
+                        <th>Tunjangan</th>
+                        <th>Uang Makan</th>
                         <th>Opsi</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
                         <th>No</th>
-                        <th>Nama Lokasi</th>
+                        <th>Nama Jabatan</th>
+                        <th>Gapok</th>
+                        <th>Tunjangan</th>
+                        <th>Uang Makan</th>
                         <th>Opsi</th>
                     </tr>
                 </tfoot>
@@ -68,7 +74,7 @@
                     <?php
                     $database = new Database();
                     $db = $database->getConnection();
-                    $selectSql = "SELECT * FROM lokasi";
+                    $selectSql = "SELECT * FROM jabatan";
                     $stmt = $db->prepare($selectSql);
                     $stmt->execute();
                     $no = 1;
@@ -76,7 +82,10 @@
                     ?>
                         <tr>
                             <td><?php echo $no++ ?></td>
-                            <td><?php echo $row['nama_lokasi'] ?></td>
+                            <td><?php echo $row['nama_jabatan'] ?></td>
+                            <td><?php echo $row['gapok_jabatan'] ?></td>
+                            <td><?php echo $row['tunjangan_jabatan'] ?></td>
+                            <td><?php echo $row['uang_makan_perhari'] ?></td>
                             <td>
                                 <a href="?page=lokasiupdate&id=<?php echo $row['id'] ?>" class="btn btn-primary btn-sm mr-1">
                                     <i class="fa fa-edit"></i> Ubah

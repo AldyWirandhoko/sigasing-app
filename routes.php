@@ -18,6 +18,10 @@ if (isset($_GET['page'])){
         case 'lokasidelete':
             file_exists('pages/admin/lokasidelete.php') ? include 'pages/admin/lokasidelete.php' : include "pages/404.php";
             break;
+        //data master lokasi
+        case 'jabatanread':
+            file_exists('pages/admin/jabatanread.php') ? include 'pages/admin/jabatanread.php' : include "pages/404.php";
+            break;
         default:
             include "pages/404.php";
         }
