@@ -6,6 +6,7 @@ if (isset($_GET['page'])){
         case 'home':
             file_exists('pages/home.php') ? include 'pages/home.php' : include "pages/404.php";
             break;
+        //data master lokasi
         case 'lokasiread':
             file_exists('pages/admin/lokasiread.php') ? include 'pages/admin/lokasiread.php' : include "pages/404.php";
             break;
@@ -18,9 +19,12 @@ if (isset($_GET['page'])){
         case 'lokasidelete':
             file_exists('pages/admin/lokasidelete.php') ? include 'pages/admin/lokasidelete.php' : include "pages/404.php";
             break;
-        //data master lokasi
+        //data master Jabatan
         case 'jabatanread':
             file_exists('pages/admin/jabatanread.php') ? include 'pages/admin/jabatanread.php' : include "pages/404.php";
+            break;
+        case 'jabatancreate':
+            file_exists('pages/admin/jabatancreate.php') ? include 'pages/admin/jabatancreate.php' : include "pages/404.php";
             break;
         default:
             include "pages/404.php";

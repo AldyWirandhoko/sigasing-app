@@ -83,14 +83,17 @@
                         <tr>
                             <td><?php echo $no++ ?></td>
                             <td><?php echo $row['nama_jabatan'] ?></td>
-                            <td><?php echo $row['gapok_jabatan'] ?></td>
-                            <td><?php echo $row['tunjangan_jabatan'] ?></td>
-                            <td><?php echo $row['uang_makan_perhari'] ?></td>
+                            <td style="text-align: right;"><?php echo number_format($row['gapok_jabatan']) ?></td>
+                            <td style="text-align: right;"><?php echo number_format($row['tunjangan_jabatan']) ?></td>
+                            <td style="text-align: right;"><?php echo number_format($row['uang_makan_perhari']) ?></td>
                             <td>
-                                <a href="?page=lokasiupdate&id=<?php echo $row['id'] ?>" class="btn btn-primary btn-sm mr-1">
+                                <form action method="POST">
+                                    <input type="hidden" name="id" value="<?php echo $row['id'] ?>">
+                                </form>
+                                <a href="?page=jabatanupdate&id=<?php echo $row['id'] ?>" class="btn btn-primary btn-sm mr-1">
                                     <i class="fa fa-edit"></i> Ubah
                                 </a>
-                                <a href="?page=lokasidelete&id=<?php echo $row['id'] ?>" class="btn btn-danger btn-sm" onClick="javascript: return confirm('Konfirmasi data akan dihapus?');">
+                                <a href="?page=jabatandelete&id=<?php echo $row['id'] ?>" class="btn btn-danger btn-sm" onClick="javascript: return confirm('Konfirmasi data akan dihapus?');">
                                     <i class="fa fa-trash"></i> Hapus
                                 </a>
                             </td>
