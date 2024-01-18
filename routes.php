@@ -32,6 +32,10 @@ if (isset($_GET['page'])){
         case 'jabatandelete':
             file_exists('pages/admin/jabatandelete.php') ? include 'pages/admin/jabatandelete.php' : include "pages/404.php";
             break;
+        //data master bagian
+        case 'bagianread':
+            file_exists('pages/admin/bagianread.php') ? include 'pages/admin/bagianread.php' : include "pages/404.php";
+            break;
         default:
             include "pages/404.php";
         }
