@@ -73,7 +73,7 @@ if (isset($_POST['button_create'])) {
                 </div>
                 <div class="form-group">
                     <label for="tunjangan_jabatan">Tunjangan</label>
-                    <input type="number" class="form-control" name="Tunjangan_jabatan"
+                    <input type="number" class="form-control" name="tunjangan_jabatan"
                     onkeypress='return (event.charCode > 47 && event.charCode < 58) || event.charCode == 46'  
                     >
                 </div>
