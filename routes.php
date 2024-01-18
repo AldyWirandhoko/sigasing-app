@@ -36,6 +36,9 @@ if (isset($_GET['page'])){
         case 'bagianread':
             file_exists('pages/admin/bagianread.php') ? include 'pages/admin/bagianread.php' : include "pages/404.php";
             break;
+        case 'bagiancreate':
+            file_exists('pages/admin/bagiancreate.php') ? include 'pages/admin/bagiancreate.php' : include "pages/404.php";
+            break;
         default:
             include "pages/404.php";
         }
