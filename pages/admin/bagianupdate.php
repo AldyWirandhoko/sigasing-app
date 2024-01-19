@@ -74,7 +74,7 @@ if (isset($_GET['id'])) {
                 <div class="card-body">
                     <form method="POST">
                         <div class="form-group">
-                            <label for="nama_jabatan">Nama Bagian</label>
+                            <label for="nama_bagian">Nama Bagian</label>
                             <input type="hidden" class="form-control" name="id" value="<?php echo $row['id'] ?>">
                             <input type="text" class="form-control" name="nama_bagian" value="<?php echo $row['nama_bagian'] ?>">
                         </div>
