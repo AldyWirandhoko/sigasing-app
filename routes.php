@@ -55,6 +55,9 @@ if (isset($_GET['page'])){
         case 'karyawanupdate':
             file_exists('pages/admin/karyawanupdate.php') ? include 'pages/admin/karyawanupdate.php' : include "pages/404.php";
             break;
+        case 'karyawandelete':
+            file_exists('pages/admin/karyawandelete.php') ? include 'pages/admin/karyawandelete.php' : include "pages/404.php";
+            break;
         default:
             include "pages/404.php";
         }

@@ -64,16 +64,15 @@ if (isset($_GET['id'])) {
         
                     if ($stmt->execute()) {
         
-                        $pengguna_id = $db->lastInsertId();
-                        $updateKaryawanSql = "UPDATE karyawan SET nik = ?, nama_lengkap = ?, handphone = ?, email = ?, tanggal_masuk = ?, pengguna_id = ? WHERE id = ?";
+                        
+                        $updateKaryawanSql = "UPDATE karyawan SET nik = ?, nama_lengkap = ?, handphone = ?, email = ?, tanggal_masuk = ? WHERE id = ?";
                         $stmtKaryawan = $db->prepare($updateKaryawanSql);
                         $stmtKaryawan->bindParam(1, $_POST['nik']);
                         $stmtKaryawan->bindParam(2, $_POST['nama_lengkap']);
                         $stmtKaryawan->bindParam(3, $_POST['handphone']);
                         $stmtKaryawan->bindParam(4, $_POST['email']);
                         $stmtKaryawan->bindParam(5, $_POST['tanggal_masuk']);
-                        $stmtKaryawan->bindParam(6, $pengguna_id);
-                        $stmtKaryawan->bindParam(7, $_POST['id']);
+                        $stmtKaryawan->bindParam(6, $_POST['id']);
         
                         if ($stmtKaryawan->execute()) {
                             $_SESSION['hasil'] = true;
