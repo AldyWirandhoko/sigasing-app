@@ -13,29 +13,29 @@ if (isset($_GET['id'])) {
     if (isset($row['id'])) {
         if (isset($_POST['button_update'])) {
 
-            $updateSql = "INSERT INTO bagian_karyawan SET karyawan_id = ?, bagian_id = ?, tanggal_mulai = ?";
+            $updateSql = "INSERT INTO jabatan_karyawan SET karyawan_id = ?, jabatan_id = ?, tanggal_mulai = ?";
             $stmt = $db->prepare($updateSql);
             $stmt->bindParam(1, $_POST['karyawan_id']);
-            $stmt->bindParam(2, $_POST['bagian_id']);
+            $stmt->bindParam(2, $_POST['jabatan_id']);
             $stmt->bindParam(3, $_POST['tanggal_mulai']);
             if ($stmt->execute()) {
                 $_SESSION['hasil'] = true;
             } else {
                 $_SESSION['hasil'] = false;
             }
-            echo "<meta http-equiv='refresh' content='1;url=?page=karyawanbagian&id=" . $_POST['karyawan_id'] . "'>";
+            echo "<meta http-equiv='refresh' content='1;url=?page=karyawanjabatan&id=" . $_POST['karyawan_id'] . "'>";
         }
 
         if (isset($_POST['button_delete'])) {
-            $updateSql = "DELETE FROM bagian_karyawan WHERE id = ?";
+            $updateSql = "DELETE FROM jabatan_karyawan WHERE id = ?";
             $stmt = $db->prepare($updateSql);
-            $stmt->bindParam(1, $_POST['bk_id']);
+            $stmt->bindParam(1, $_POST['jk_id']);
             if ($stmt->execute()) {
                 $_SESSION['hasil'] = true;
             } else {
                 $_SESSION['hasil'] = false;
             }
-            echo "<meta http-equiv='refresh' content='1;url=?page=karyawanbagian&id=" . $_POST['karyawan_id'] . "'>";
+            echo "<meta http-equiv='refresh' content='1;url=?page=karyawanjabatan&id=" . $_POST['karyawan_id'] . "'>";
         }
 ?>
         <section class="content-header">
@@ -68,7 +68,7 @@ if (isset($_GET['id'])) {
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="?page=home">Home</a></li>
                             <li class="breadcrumb-item"><a href="?page=karyawanread">Karyawan</a></li>
-                            <li class="breadcrumb-item active">Riwayat Bagian</li>
+                            <li class="breadcrumb-item active">Riwayat Jabatan</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -77,7 +77,7 @@ if (isset($_GET['id'])) {
         <section class="content">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Riwayat Bagian</h3>
+                    <h3 class="card-title">Riwayat Jabatan</h3>
                     <a href="?page=karyawanread" class="btn btn-primary btn-sm float-right">
                     <i class="fa fa-backspace"></i> Kembali</a>
                 </div>
@@ -105,17 +105,17 @@ if (isset($_GET['id'])) {
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label for="bagian_id">Bagian</label>
-                                    <select class="form-control" name="bagian_id">
-                                        <option value="">-- Pilih Bagian --</option>
+                                    <label for="jabatan_id">Jabatan</label>
+                                    <select class="form-control" name="jabatan_id">
+                                        <option value="">-- Pilih Jabatan --</option>
                                         <?php
                                         
-                                        $selectSQL = "SELECT * FROM bagian";
-                                        $stmt_bagian = $db->prepare($selectSQL);
-                                        $stmt_bagian->execute();
+                                        $selectSQL = "SELECT * FROM jabatan";
+                                        $stmt_jabatan = $db->prepare($selectSQL);
+                                        $stmt_jabatan->execute();
 
-                                        while ($row_bagian = $stmt_bagian->fetch(PDO::FETCH_ASSOC)) {
-                                            echo "<option value=\"" . $row_bagian["id"] . "\">" . $row_bagian["nama_bagian"] . "</option>";
+                                        while ($row_jabatan = $stmt_jabatan->fetch(PDO::FETCH_ASSOC)) {
+                                            echo "<option value=\"" . $row_jabatan["id"] . "\">" . $row_jabatan["nama_jabatan"] . "</option>";
                                         }
                                         ?>
                                     </select>
@@ -137,7 +137,7 @@ if (isset($_GET['id'])) {
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Nama Bagian</th>
+                                <th>Nama Jabatan</th>
                                 <th>Tanggal Mulai</th>
                                 <th>Opsi</th>
                             </tr>
@@ -147,24 +147,24 @@ if (isset($_GET['id'])) {
                             $database = new Database();
                             $db = $database->getConnection();
 
-                            $selectSql = "SELECT BK.*, B.nama_bagian FROM bagian_karyawan BK
-                                        LEFT JOIN bagian B ON BK.bagian_id = B.id
-                                        WHERE BK.karyawan_id = ?
+                            $selectSql = "SELECT JK.*, J.nama_jabatan FROM jabatan_karyawan JK
+                                        LEFT JOIN jabatan J ON JK.jabatan_id = J.id
+                                        WHERE JK.karyawan_id = ?
                                         ORDER BY tanggal_mulai DESC";
                             $stmt = $db->prepare($selectSql);
                             $stmt->bindParam(1, $id);
                             $stmt->execute();
 
                             $no = 1;
-                            while ($rowbagian = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                            while ($rowjabatan = $stmt->fetch(PDO::FETCH_ASSOC)) {
                             ?>
                                 <tr>
                                     <td><?php echo $no++ ?></td>
-                                    <td><?php echo $rowbagian['nama_bagian'] ?></td>
-                                    <td><?php echo $rowbagian['tanggal_mulai'] ?></td>
+                                    <td><?php echo $rowjabatan['nama_jabatan'] ?></td>
+                                    <td><?php echo $rowjabatan['tanggal_mulai'] ?></td>
                                     <td>
                                         <form action method="POST">
-                                            <input type="hidden" name="bk_id" value="<?php echo $rowbagian['id'] ?>">
+                                            <input type="hidden" name="jk_id" value="<?php echo $rowjabatan['id'] ?>">
                                             <input type="hidden" value="<?php echo $id ?>" name="karyawan_id">
                                             <button type="submit" name="button_delete" class="btn btn-danger btn-sm mr-1" onClick="javascript: return confirm('Konfirmasi data akan dihapus?');"><i class="fa fa-trash"></i> Hapus</button>
                                         </form>
