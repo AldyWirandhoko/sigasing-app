@@ -88,7 +88,13 @@
                         <tr>
                             <td><?php echo $row['nik'] ?></td>
                             <td><?php echo $row['nama_lengkap'] ?></td>
-                            <td><?php echo $row['bagian_terkini'] ?></td>
+                            <td>
+                                <?php 
+                                $bagian_terkini = $row['bagian_terkini'] == "" ? "Belum ada" : $row['bagian_terkini']; 
+                                ?>
+                                <a href="?page=karyawanbagian&id=<?php echo $row['id'] ?>" class="btn bg-fuchsia btn-sm mr-1">
+                                <i class="fa fa-building"></i> <?php echo $bagian_terkini ?></a>
+                            </td>
                             <td><?php echo $row['jabatan_terkini'] ?></td>
                             <td>
                                 <a href="?page=karyawanupdate&id=<?php echo $row['id'] ?>" class="btn btn-primary btn-sm mr-1">
